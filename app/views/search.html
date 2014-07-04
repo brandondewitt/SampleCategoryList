@@ -1,0 +1,22 @@
+<div class="search">
+    <i class="glyphicon glyphicon-remove close" ng-click="close()"></i>
+    <div class="container">
+        <input id="searchInput" ng-model="keyword" ng-keyup="find(keyword)" autofocus placeholder="Search"/>
+
+        <table class="table searchResults" infinite-scroll="fetchProducts()" inifite-scroll-distance="100">
+            <tr ng-repeat="product in products">
+                <td>Product ID: {{product.ProductId}}</td>
+                <td>
+                    <p>
+                        <img ng-src="http://images.monoprice.com/productimages/{{product.ProductId}}s.jpg"/>
+                    </p>
+                    <img ng-show="product.ProductTotalRatingCount" ng-src="http://www.monoprice.com/images/smrating_{{product.avg_f_rating}}.png"/>
+                    <p>
+                        <small ng-show="product.ProductTotalRatingCount">{{product.ProductTotalRatingCount}} Total Reviews</small>
+                    </p>
+                </td>
+                <td>{{product.ProductName}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
