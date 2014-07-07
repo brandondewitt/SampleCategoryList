@@ -1,0 +1,12 @@
+<td>PID: {{product.ProductId}}</td>
+<td>
+    <p>
+        <img ng-src="http://images.monoprice.com/productimages/{{product.ProductId}}s.jpg"/>
+    </p>
+    <img ng-show="product.ProductTotalRatingCount" ng-src="http://www.monoprice.com/images/smrating_{{product.avg_f_rating}}.png"/>
+    <p>
+        <small ng-show="product.ProductTotalRatingCount">{{product.ProductTotalRatingCount}} Total Reviews</small>
+    </p>
+</td>
+<td>{{product.ProductName}}</td>
+<td>{{product.Price_i | currency}}</td>

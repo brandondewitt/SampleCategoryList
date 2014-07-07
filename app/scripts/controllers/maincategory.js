@@ -3,7 +3,6 @@
 angular.module('categoryListingApp')
   .controller('MaincategoryCtrl', function ($scope, Category, $routeParams) {
       var BreadCrumbs = [];
-      BreadCrumbs.push({label: 'Home', url: '/#'});
 
       $scope.breadcrumbs = BreadCrumbs;
 

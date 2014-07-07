@@ -1,26 +1,8 @@
-<ol class="breadcrumb">
-    <li ng-repeat="crumb in breadcrumbs" class="crumb.active">
-        <ng-switch on="crumb.active">
-            <span ng-switch-when="active">{{crumb.label}}</span>
-            <a ng-switch-default href="{{crumb.url}}">{{crumb.label}}</a>
-        </ng-switch>
-    </li>
-</ol>
-<div class="row marketing">
+<breadcrumb></breadcrumb>
+
+<div class="row">
     <h4>Products</h4>
-        <table class="table" infinite-scroll="fetchProducts()" inifite-scroll-distance="3">
-            <tr ng-repeat="product in products">
-                <td>Product ID: {{product.ProductId}}</td>
-                <td>
-                    <p>
-                        <img ng-src="http://images.monoprice.com/productimages/{{product.ProductId}}s.jpg"/>
-                    </p>
-                    <img ng-show="product.ProductTotalRatingCount" ng-src="http://www.monoprice.com/images/smrating_{{product.avg_f_rating}}.png"/>
-                    <p>
-                        <small ng-show="product.ProductTotalRatingCount">{{product.ProductTotalRatingCount}} Total Reviews</small>
-                    </p>
-                </td>
-                <td>{{product.ProductName}}</td>
-            </tr>
-        </table>
+    <table class="table" infinite-scroll="fetchProducts()" inifite-scroll-distance="3">
+        <tr ng-repeat="product in products" product="product"></tr>
+    </table>
 </div>

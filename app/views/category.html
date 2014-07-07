@@ -1,33 +1,20 @@
-<ol class="breadcrumb">
-    <li ng-repeat="crumb in breadcrumbs" class="crumb.active">
-        <ng-switch on="crumb.active">
-            <span ng-switch-when="active">{{crumb.label}}</span>
-            <a ng-switch-default href="{{crumb.url}}">{{crumb.label}}</a>
-        </ng-switch>
-    </li>
-</ol>
+<breadcrumb></breadcrumb>
 
-<div class="row marketing">
+<div class="row">
     <h4 ng-show="categories.length">Category</h4>
-    <ul class="nav nav-pills nav-stacked">
-        <li ng-repeat="category in categories"><a href="#/{{category.MainCategoryId}}/{{category.CategoryId}}/{{category.SubCategoryId}}">{{category.SubCategoryName}}</a></li>
-    </ul>
 
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li ng-repeat="category in categories"><a href="#/{{category.MainCategoryId}}/{{category.CategoryId}}/{{category.SubCategoryId}}">{{category.SubCategoryName}}</a></li>
+        </ul>
+    </div>
 
-    <h4>Products</h4>
-    <table class="table" infinite-scroll="fetchProducts()" inifite-scroll-distance="3">
-        <tr ng-repeat="product in products">
-            <td>Product ID: {{product.ProductId}}</td>
-            <td>
-                <p>
-                    <img ng-src="http://images.monoprice.com/productimages/{{product.ProductId}}s.jpg"/>
-                </p>
-                <img ng-show="product.ProductTotalRatingCount" ng-src="http://www.monoprice.com/images/smrating_{{product.avg_f_rating}}.png"/>
-                <p ng-show="product.ProductTotalRatingCount">
-                    <small>{{product.ProductTotalRatingCount}} Total Reviews</small>
-                </p>
-            </td>
-            <td>{{product.ProductName}}</td>
-        </tr>
-    </table>
+    <div class="col-md-9">
+        <div class="panel panel-default" ng-repeat="category in categories | orderBy:SubCategoryDisplayOrder">
+            <div class="panel-heading" infinite-scroll="fetchProducts()" inifite-scroll-distance="3">{{category.SubCategoryName}}</div>
+            <table class="table">
+                <tr ng-repeat="product in products | filter:{SubCategoryId: category.SubCategoryId}" product="product"></tr>
+            </table>
+        </div>
+    </div>
 </div>
