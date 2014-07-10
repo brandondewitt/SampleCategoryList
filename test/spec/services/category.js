@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: category', function () {
+describe('Service: Category', function () {
 
   // load the service's module
   beforeEach(module('categoryListingApp'));
 
   // instantiate service
-  var category;
-  beforeEach(inject(function (_category_) {
-    category = _category_;
+  var Category;
+  beforeEach(inject(function (_Category_) {
+    Category = _Category_;
   }));
 
   it('should do something', function () {
-    expect(!!category).toBe(true);
+    expect(!!Category).toBe(true);
   });
 
 });

@@ -6,17 +6,26 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('categoryListingApp'));
 
   var MainCtrl,
-    scope;
+    scope,
+    $httpBackend;
+
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
+    $httpBackend = _$httpBackend_;
+
     scope = $rootScope.$new();
+
+    $httpBackend.expectGET('http://localhost:3000/api/categories')
+      .respond({categories: [{}]});
+
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should attach a list of categories to the scope', function () {
+    $httpBackend.flush();
+    expect(scope.categories.length).toBe(1);
   });
 });

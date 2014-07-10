@@ -6,13 +6,13 @@ describe('Service: search', function () {
   beforeEach(module('categoryListingApp'));
 
   // instantiate service
-  var search;
-  beforeEach(inject(function (_search_) {
-    search = _search_;
+  var Search;
+  beforeEach(inject(function (_Search_) {
+    Search = _Search_;
   }));
 
   it('should do something', function () {
-    expect(!!search).toBe(true);
+    expect(!!Search).toBe(true);
   });
 
 });

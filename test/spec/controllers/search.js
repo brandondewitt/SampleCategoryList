@@ -16,7 +16,19 @@ describe('Controller: SearchCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should start with an empty keyword', function () {
+    expect(scope.keyword).toBe('');
+  });
+
+  it('should default TotalPages to 0', function () {
+    expect(scope.TotalPages).toBe(0);
+  });
+
+  it('should default currentPage to 0', function () {
+    expect(scope.currentPage).toBe(0);
+  });
+
+  it('should set an empty list of products', function () {
+    expect(scope.products.length).toBe(0);
   });
 });

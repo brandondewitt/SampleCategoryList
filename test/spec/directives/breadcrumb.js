@@ -5,16 +5,31 @@ describe('Directive: breadcrumb', function () {
   // load the directive's module
   beforeEach(module('categoryListingApp'));
 
-  var element,
-    scope;
+  var scope,
+    $httpBackend;
 
-  beforeEach(inject(function ($rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $rootScope, $routeParams) {
+    $httpBackend = _$httpBackend_;
+
+    $httpBackend.expectGET('views/breadcrumbs.html')
+      .respond('');
+
+    $httpBackend.expectGET('http://localhost:3000/api/categories/102')
+      .respond({categories: [{}]});
+
+    $httpBackend.expectGET('http://localhost:3000/api/categories/102/10240')
+      .respond({categories: [{}]});
+
     scope = $rootScope.$new();
+
+    $routeParams = {
+      maincategory: 102,
+      category: 10240
+    };
+
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<breadcrumb></breadcrumb>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the breadcrumb directive');
-  }));
+  it('should have a list of crumbs');
+
+  it('should add categories to list of crumbs');
 });
